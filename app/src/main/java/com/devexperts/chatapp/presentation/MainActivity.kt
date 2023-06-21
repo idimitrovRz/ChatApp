@@ -16,18 +16,25 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.devexperts.chatapp.data.local.AppDatabase
+import com.devexperts.chatapp.data.local.user.User
+import com.devexperts.chatapp.domain.interactor.user.FriendsInteractor
 import com.devexperts.chatapp.presentation.bottom_navigation.BottomNavigationBar
 import com.devexperts.chatapp.presentation.bottom_navigation.BottomNavigationItem
 import com.devexperts.chatapp.presentation.chat.ChatScreen
 import com.devexperts.chatapp.presentation.friends.FriendsScreen
+import com.devexperts.chatapp.presentation.friends.FriendsViewModel
 import com.devexperts.chatapp.presentation.ui.theme.ChatAppTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             val navController = rememberNavController()
             val scaffoldState = rememberScaffoldState()
@@ -74,10 +81,18 @@ class MainActivity : ComponentActivity() {
                                 composable(
                                     Screen.FriendsScreen.route
                                 ) {
-                                    FriendsScreen(navController)
+                                    FriendsScreen(
+                                        navController = navController,
+                                        viewModel = FriendsViewModel(
+                                            friendsInteractor = FriendsInteractor(
+                                                userDao = AppDatabase.getDatabase(applicationContext)
+                                                    .userDao()
+                                            )
+                                        )
+                                    )
                                 }
                                 composable(
-                                    Screen.ChatScreen.route + "/{chatId}"
+                                    Screen.ChatScreen.route + "/{friendId}"
                                 ) {
                                     ChatScreen(navController)
                                 }

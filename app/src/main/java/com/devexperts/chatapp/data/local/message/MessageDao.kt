@@ -9,7 +9,7 @@ import androidx.room.Query
 interface MessageDao {
 
     @Query("SELECT * FROM messages WHERE id LIKE :userId")
-    fun getMessagedByUserId(userId: String): List<Message>
+    fun getMessagesByUserId(userId: String): List<Message>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(message: Message)
