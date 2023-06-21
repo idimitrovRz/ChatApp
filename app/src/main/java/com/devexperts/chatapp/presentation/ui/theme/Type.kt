@@ -1,4 +1,4 @@
-package com.devexperts.chatapp.ui.theme
+package com.devexperts.chatapp.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
