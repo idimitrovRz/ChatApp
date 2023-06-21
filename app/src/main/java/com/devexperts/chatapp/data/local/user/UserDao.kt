@@ -8,11 +8,11 @@ import androidx.room.Query
 @Dao
 interface UserDao {
     @Query("SELECT * FROM users")
-    suspend fun getAll(): List<User>
+    fun getAll(): List<User>
 
     @Query("SELECT * FROM users WHERE username LIKE :username LIMIT 1")
-    suspend fun findByName(username: String): User
+    fun findByName(username: String): User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: User)
+    fun insert(user: User)
 }

@@ -1,12 +1,12 @@
-package com.devexperts.chatapp.presentation.messages
+package com.devexperts.chatapp.presentation.friends
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun MessagesScreen(
+fun FriendsScreen(
     navController: NavController
 ) {
-    Text("MessagesScreen Nav Test")
+    Text("FriendsScreen Nav Test")
 }

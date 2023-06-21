@@ -22,7 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.devexperts.chatapp.presentation.bottom_navigation.BottomNavigationBar
 import com.devexperts.chatapp.presentation.bottom_navigation.BottomNavigationItem
 import com.devexperts.chatapp.presentation.chat.ChatScreen
-import com.devexperts.chatapp.presentation.messages.MessagesScreen
+import com.devexperts.chatapp.presentation.friends.FriendsScreen
 import com.devexperts.chatapp.presentation.ui.theme.ChatAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             items = listOf(
                                 BottomNavigationItem(
                                     name = "Messages",
-                                    route = Screen.MessagesScreen.route,
+                                    route = Screen.FriendsScreen.route,
                                     icon = Icons.Default.Home
                                 ),
                                 BottomNavigationItem(
@@ -69,12 +69,12 @@ class MainActivity : ComponentActivity() {
                         Surface(color = MaterialTheme.colors.background) {
                             NavHost(
                                 navController = navController,
-                                startDestination = Screen.MessagesScreen.route
+                                startDestination = Screen.FriendsScreen.route
                             ) {
                                 composable(
-                                    Screen.MessagesScreen.route
+                                    Screen.FriendsScreen.route
                                 ) {
-                                    MessagesScreen(navController)
+                                    FriendsScreen(navController)
                                 }
                                 composable(
                                     Screen.ChatScreen.route + "/{chatId}"
